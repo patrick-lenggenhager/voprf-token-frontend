@@ -1,1 +1,7 @@
 test
+.env
+valid_tokens.txt
+used_tokens.txt
+email_list.csv
+mailmerge_db.csv
+form_url.txt
