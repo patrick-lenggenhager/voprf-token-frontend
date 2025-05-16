@@ -6,12 +6,26 @@
   <title>Anonymous Survey Token</title>
 </head>
 <body>
+  <noscript>
+    <div style="color: red; font-weight: bold;">
+      ⚠️ This page requires JavaScript to function properly. Please enable JavaScript in your browser.
+    </div>
+  </noscript>
+
   <h1>Generating Your Anonymous Token...</h1>
   <p id="message">Please wait while your secure token is created...</p>
-  <pre id="token" style="white-space: break-spaces; word-break: break-word;"></pre>
-  <p>
-    <a id="form-link" href="#" target="_blank" rel="noopener noreferrer">Open the form</a>
-  </p>
+
+  <section id="token-section" style="display: none;">
+    <strong>Anonymous Token:</strong>
+    <pre id="token" style="white-space: break-spaces; word-break: break-word;"></pre>
+    <button id="copy-token">📋 Copy Token</button>
+  </section>
+
+  <section style="margin-top: 1em;">
+    <strong>Form:</strong>
+    <a id="form-link" href="#" target="_blank" rel="noopener noreferrer"><pre id="form-url" style="white-space: break-spaces; word-break: break-word;"></pre></a>
+    <button id="copy-url">📋 Copy URL</button><br />
+  </section>
 
   <script type="module" src="script.js"></script>
 </body>
