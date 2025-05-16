@@ -99,9 +99,9 @@ async function main() {
     finalURL = `${formURLPrefix}=${encodeURIComponent(tokenString)}`;
 
   } catch (err) {
-    console.warn("❌ Backend failed, fallback to empty token:", err);
+    console.warn("❌ Token generation failed, fallback to empty token:", err);
     clearInterval(countdownInterval);
-    msgEl.textContent = `❌ Failed to verify access token: ${err.message}. You can still access the form but must paste your token manually.`;
+    msgEl.textContent = `❌ Failed to verify access token: ${err.message} You can still access the form but must paste your token manually.`;
   }
 
   // Show link regardless of outcome
