@@ -38,7 +38,7 @@ function setLink(url) {
 }
 
 async function main() {
-  const backendURL = 'http://localhost:3000/voprf/evaluate';
+  const backendURL = 'https://vorpf-token-backend.onrender.com/voprf/evaluate';
   const accessToken = getQueryParam('token');
   const encodedFormURL = getQueryParam('form');
   const tokenSection = document.getElementById('token-section');
