@@ -14,7 +14,10 @@
   </noscript>
 
   <h1>Generating Your Anonymous Token...</h1>
-  <p id="message">Please wait while your secure token is created (usually takes less than a second, but in extraordinary circumstances can take up to one minute)...</p>
+  <p id="message">
+    <span id="spinner" style="display: inline-block; margin-right: 0.5rem;">⏳</span>
+    <span id="countdown">60</span> s left — Waiting for secure token to be created...
+  </p>
 
   <section id="token-section" style="display: none;">
     <strong>Anonymous Token:</strong>

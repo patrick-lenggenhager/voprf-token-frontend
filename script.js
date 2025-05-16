@@ -39,9 +39,11 @@ function setLink(url) {
 
 async function main() {
   const backendURL = 'https://vorpf-token-backend.onrender.com/voprf/evaluate';
+  //const backendURL = 'http://localhost:3000/voprf/evaluate';
   const accessToken = getQueryParam('token');
   const encodedFormURL = getQueryParam('form');
   const tokenSection = document.getElementById('token-section');
+  const countdownEl = document.getElementById('countdown');
 
   tokenSection.style.display = 'none'; // always hidden initially
 
@@ -52,6 +54,18 @@ async function main() {
 
   const formURLPrefix = decodeURIComponent(encodedFormURL);
   let finalURL = `${formURLPrefix}=`;
+  setLink(finalURL);
+
+  let seconds = 60;
+  const countdownInterval = setInterval(() => {
+    seconds--;
+    countdownEl.textContent = seconds;
+
+    if (seconds <= 0) {
+      clearInterval(countdownInterval);
+      msgEl.textContent = '⏳ Server is taking too long to respond. Please wait.';
+    }
+  }, 1000);
 
   try {
     const xBytes = utils.randomPrivateKey();
@@ -78,6 +92,7 @@ async function main() {
     const finalToken = new Uint8Array([...xBytes, ...final.toRawBytes(true)]);
     const tokenString = base64urlEncode(finalToken);
 
+    clearInterval(countdownInterval);
     msgEl.textContent = '✅ Your anonymous token was generated successfully. You can now either copy it and later paste it into the form, or use the link below to open the form directly. You can also copy the link to the form to open it in a private browser window. If you wait, you will automatically be redirected to the form.';
     tokenEl.textContent = tokenString;
     tokenSection.style.display = 'block'; // show token section
@@ -85,6 +100,7 @@ async function main() {
 
   } catch (err) {
     console.warn("❌ Backend failed, fallback to empty token:", err);
+    clearInterval(countdownInterval);
     msgEl.textContent = `❌ Failed to verify access token: ${err.message}. You can still access the form but must paste your token manually.`;
   }
 
